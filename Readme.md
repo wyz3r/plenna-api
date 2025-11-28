@@ -67,6 +67,16 @@ npm run build
 npm start
 ```
 
+5. Probar el proyecto localmente con los endpoints 
+[📄 Postman collection /docs](https://github.com/wyz3r/plenna-api/tree/main/docs)
+
+
+
+
+
+
+
+
 # Scripts del proyecto
 
 ## Desarrollo
@@ -139,6 +149,7 @@ src/
 ```
 
 ## 📚 Endpoints de la API
+
 
 ### 🧑‍⚕️ Patients
 
