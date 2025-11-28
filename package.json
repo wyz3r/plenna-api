@@ -14,7 +14,9 @@
     "seed:basic": "ts-node src/scripts/seed-basic.ts",
     "seed:massive": "ts-node src/scripts/seed-massive.ts",
     "reset:db": "ts-node src/scripts/reset-db.ts",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "stress:users": "node src/scripts/stress-user.js",
+    "stress:get": "node src/scripts/stress-test.js"
   },
   "author": "Leonel Islas Gonzalez",
   "license": "ISC",

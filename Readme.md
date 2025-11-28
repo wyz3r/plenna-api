@@ -247,4 +247,18 @@ Errores manejados:
 +-----------------------+
 ```
 
+# Scripts para estress (demo)
+
+flujo completo de creacion de patient  y consulta de historial
+```bash
+npm run stress:users
+```
+prueba para multiples usuarios consulten el endpoint de disponiblilidad de doctor
+
+```bash
+npm run stress:users
+```
+
+
+
 
