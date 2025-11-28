@@ -3,7 +3,6 @@ import path from 'path';
 
 const logDir = 'logs';
 
-// Crear directorio si no existe
 if (!fs.existsSync(logDir)) {
   fs.mkdirSync(logDir);
 }
@@ -25,11 +24,7 @@ function writeToFile(text: string): void {
 function log(level: LogLevel, message: string): void {
   const timestamp = new Date().toISOString();
   const line = `[${timestamp}] ${level.toUpperCase()}: ${message}`;
-
-  // Consola con color
   console.log(colors[level] + line + colors.reset);
-
-  // Archivo sin color
   writeToFile(line);
 }
 

@@ -1,13 +1,13 @@
 import { AppError } from './AppError';
 
-// Error 400 - Validación
+// Error 400 - Validation
 export class ValidationError extends AppError {
   constructor(message: string) {
     super(message, 400, true);
   }
 }
 
-// Error 404 - No encontrado
+// Error 404 - Not found
 export class NotFoundError extends AppError {
   constructor(message = 'Resource not found') {
     super(message, 404, true);

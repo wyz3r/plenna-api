@@ -11,6 +11,6 @@ export const validateUpdatePatient = (req: Request, res: Response, next: NextFun
     });
   }
 
-  req.body = result.data; // ✅ solo campos válidos
+  req.body = result.data;
   next();
 };

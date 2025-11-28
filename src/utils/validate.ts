@@ -16,7 +16,6 @@ export const validate =
       });
     }
 
-    // ✅ Express 5 SAFE: no se reasigna, solo se mezclan los valores
     Object.assign(req[property], result.data);
 
     next();
