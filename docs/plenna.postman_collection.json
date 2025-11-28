@@ -1,0 +1,248 @@
+{
+  "info": {
+    "_postman_id": "8c096f28-6260-4cec-ab36-636100c4645b",
+    "name": "plenna",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "49419043",
+    "_collection_link": "https://leonel-lapxo-7272280.postman.co/workspace/Leonel's-Workspace~5e4128b3-48b3-4de2-8e38-85d7e1639899/collection/49419043-8c096f28-6260-4cec-ab36-636100c4645b?action=share&source=collection_link&creator=49419043"
+  },
+  "item": [
+    {
+      "name": "patient",
+      "item": [
+        {
+          "name": "patient/history",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/patient/history/6928e689d528fb7218be21d1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["patient", "history", "6928e689d528fb7218be21d1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete patient",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/patient/delete/6928ce2564bb793ec91b7479",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["patient", "delete", "6928ce2564bb793ec91b7479"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get patients",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "http://localhost:3000/patient",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["patient"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Patient by id",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "http://localhost:3000/patient/6928ce2564bb793ec91b747d",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["patient", "6928ce2564bb793ec91b747d"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Post Create patient",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Carlos\",\n  \"lastName\": \"Hernández\",\n  \"age\": 35,\n  \"gender\": \"M\",\n  \"phone\": \"5512345678\",\n  \"email\": \"carlos.hernandez@gmail.com\",\n  \"medicalProfile\": {\n    \"bloodType\": \"O+\",\n    \"allergies\": [\"Penicilina\", \"Polen\"],\n    \"chronicDiseases\": [\"Diabetes tipo 2\"]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/patient",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["patient"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Patch Update patient",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"gender\": \"F\"\n  \n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/patient/6928e689d528fb7218be21d1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["patient", "6928e689d528fb7218be21d1"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Doctor",
+      "item": [
+        {
+          "name": "Get doctors availability",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/doctors/availability",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["doctors", "availability"],
+              "query": [
+                {
+                  "key": "date",
+                  "value": "2022-05-20",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "consultations",
+      "item": [
+        {
+          "name": "Post create consultation",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"patientId\": \"6928e689d528fb7218be21d1\",\n  \"date\": \"2025-11-27T14:30:00.000Z\",\n  \"doctor\": \"Dr. Juan Pérez\",\n  \"reason\": \"Dolor abdominal persistente\",\n  \"diagnosis\": \"Gastritis\",\n  \"treatment\": \"Omeprazol 20mg cada 24 horas por 14 días\",\n  \"notes\": \"Paciente refiere mejoría leve tras primer día de tratamiento\",\n  \"vitals\": {\n    \"weight\": 72,\n    \"height\": 170,\n    \"pressure\": \"120/80\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/consultation",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["consultation"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Health",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/health",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["health"]
+        }
+      },
+      "response": []
+    }
+  ]
+}

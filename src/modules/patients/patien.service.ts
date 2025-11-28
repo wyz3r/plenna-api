@@ -31,7 +31,7 @@ const getPatientByidServices = async (id: string): Promise<IPatient | undefined>
   try {
     const patient = await Patient.findById(id);
     if (!patient) {
-      throw new NotFoundError('Patient not Found');
+      throw new NotFoundError(`patient not found with the id: ${id}`);
     }
     logger.info('Patient Found');
     return patient;
@@ -67,7 +67,7 @@ const deletePatienByIdService = async (id: string) => {
   try {
     const patientupdate = await Patient.findByIdAndUpdate(id, { isDeleted: true });
     if (!patientupdate) {
-      throw new NotFoundError('Patient Not Found');
+      throw new NotFoundError(`patient not found with the id: ${id}`);
     }
     logger.info('Patient updated');
     return patientupdate;
@@ -91,9 +91,8 @@ const updatedPatientbyIdService = async (id: string, body: object) => {
       runValidators: true,
     }
   );
-
   if (!updatedPatient) {
-    throw new NotFoundError('Patient not found');
+    throw new NotFoundError(`patient not found with the id: ${id}`);
   }
   return updatedPatient;
 };

@@ -5,7 +5,7 @@
   "main": "dist/server.js",
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
-    "build": "tsc",
+    "build": "rm -rf dist && tsc",
     "start": "node dist/server.js",
     "lint": "eslint .",
     "test": "jest",
@@ -13,7 +13,8 @@
     "init:collections": "ts-node src/scripts/init-collections.ts",
     "seed:basic": "ts-node src/scripts/seed-basic.ts",
     "seed:massive": "ts-node src/scripts/seed-massive.ts",
-    "reset:db": "ts-node src/scripts/reset-db.ts"
+    "reset:db": "ts-node src/scripts/reset-db.ts",
+    "test:coverage": "jest --coverage"
   },
   "author": "Leonel Islas Gonzalez",
   "license": "ISC",
@@ -21,7 +22,6 @@
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
     "mongoose": "^9.0.0",
-    "moongose": "^1.0.0",
     "zod": "^4.1.13"
   },
   "devDependencies": {
@@ -30,6 +30,7 @@
     "@types/jest": "^30.0.0",
     "@types/mongoose": "^5.11.97",
     "@types/node": "^24.10.1",
+    "@types/supertest": "^6.0.3",
     "autoprefixer": "^10.4.22",
     "eslint": "^9.39.1",
     "eslint-config-prettier": "^10.1.8",

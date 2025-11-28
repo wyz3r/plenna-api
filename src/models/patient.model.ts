@@ -1,4 +1,4 @@
-import { Schema, model } from 'mongoose';
+import { Query, Schema, model } from 'mongoose';
 
 export interface Patient {
   name: string;
@@ -30,5 +30,9 @@ const PatientSchema = new Schema<Patient>(
   },
   { timestamps: true }
 );
+
+PatientSchema.pre<Query<Patient[], Patient>>(/^find/, function () {
+  this.where({ isDeleted: false });
+});
 
 export const Patient = model('Patient', PatientSchema);
