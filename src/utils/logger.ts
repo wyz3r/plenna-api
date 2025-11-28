@@ -36,5 +36,6 @@ function log(level: LogLevel, message: string): void {
 export const logger = {
   info: (msg: string) => log('info', msg),
   warn: (msg: string) => log('warn', msg),
-  error: (msg: string, error: unknown) => log('error', `${msg} Error: ${error}`),
+  error: (msg: string, error?: unknown) =>
+    log('error', `${msg} ${error !== undefined ? 'Details:' + error : ''}`),
 };

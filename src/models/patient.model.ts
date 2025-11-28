@@ -10,6 +10,7 @@ export interface Patient {
   phone: string;
   birthDate: Date;
   address: string;
+  isDeleted: boolean;
 }
 
 const PatientSchema = new Schema<Patient>(
@@ -20,6 +21,7 @@ const PatientSchema = new Schema<Patient>(
     gender: { type: String, required: true },
     phone: String,
     email: String,
+    isDeleted: { type: Boolean, default: false },
     medicalProfile: {
       bloodType: String,
       allergies: [String],

@@ -5,7 +5,9 @@ import { requestLogger } from './utils/requestLogger';
 import { errorHandler } from './utils/errorHandler';
 import { emptyPostValidation } from './utils/emptyPostValidation';
 import { notFoundHandler } from './utils/notFoundHandler';
-import { unificationSchedule } from './modules/schedule/schedule.service';
+import doctorRoutes from './modules/schedule/schedule.route';
+import patientRoutes from './modules/patients/patient.route';
+import consultationRoute from './modules/consultations/consultations.route';
 
 const app = express();
 
@@ -13,24 +15,15 @@ app.use(express.json());
 app.use(requestLogger);
 app.use(emptyPostValidation);
 
-app.get('/', (_req, res) => {
+app.get('/health', (_req, res) => {
   logger.info('health check');
   res.json({ message: 'API is working!!!!!' });
 });
 
-app.get('/doctors/availability', async (req, res) => {
-  logger.info('schedules info json ');
-  const { date } = req.query;
-  const resjson = await unificationSchedule(date);
-  return res.json(resjson);
-});
-
-app.post('/', async (req, res) => {
-  const { params, body } = req;
-  console.log({ params });
-  console.log({ body });
-  return res.json({});
-});
+// routes
+app.use('/doctors', doctorRoutes);
+app.use('/patient', patientRoutes);
+app.use('/consultation', consultationRoute);
 
 app.use(notFoundHandler);
 app.use(errorHandler);

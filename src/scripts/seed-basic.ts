@@ -13,6 +13,7 @@ async function seedBasic() {
       gender: 'M',
       phone: '5512345678',
       email: 'juan@test.com',
+      isDeleted: false,
       medicalProfile: {
         bloodType: 'O+',
         allergies: ['Polen'],

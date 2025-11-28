@@ -7,23 +7,9 @@ export class ValidationError extends AppError {
   }
 }
 
-// Error 401 - Autenticación
-export class AuthError extends AppError {
-  constructor(message = 'Unauthorized') {
-    super(message, 401, true);
-  }
-}
-
 // Error 404 - No encontrado
 export class NotFoundError extends AppError {
   constructor(message = 'Resource not found') {
     super(message, 404, true);
-  }
-}
-
-// Error 500 - Base de datos u otros problemas graves
-export class DatabaseError extends AppError {
-  constructor(message = 'Database error') {
-    super(message, 500, true);
   }
 }

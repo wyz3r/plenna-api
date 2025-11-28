@@ -3,7 +3,6 @@ import { logger } from '../utils/logger';
 
 export const connectDB = async () => {
   try {
-    logger.info('✅ connectDB');
     const MONGO_URI = process.env.MONGO_URI as string;
     const DB_NAME = process.env.DB_NAME as string;
     const DB_USER = process.env.DB_USER as string;

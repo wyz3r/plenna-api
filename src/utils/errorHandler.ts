@@ -13,9 +13,14 @@ export function errorHandler(err: Error, req: Request, res: Response, _next: Nex
     });
   }
 
-  logger.error(`${req.method} ${req.originalUrl} - NOT CONTROL ERROR - ${err.message}`);
+  if (err.name === 'MongoServerError') {
+    return res.status(500).json({
+      status: 'error',
+      message: 'Database error',
+    });
+  }
 
-  // logger.error(`${req.method} ${req.originalUrl} - ${err.message}`);
-  // res.status(500).json({ error: 'Internal Server Error' });
+  logger.error(`${req.method} ${req.originalUrl} - NOT CONTROL ERROR - ${err.message}`, err);
+
   return res.status(500).json({ status: 'error', message: 'Internal Server Error' });
 }

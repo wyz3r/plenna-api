@@ -12,6 +12,7 @@ async function seedMassive() {
         name: `Paciente ${i}`,
         lastName: 'Test',
         age: 20 + i,
+        isDeleted: false,
         gender: i % 2 === 0 ? 'F' : 'M',
         phone: `55100000${i}`,
         email: `paciente${i}@test.com`,
