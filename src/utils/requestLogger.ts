@@ -3,7 +3,6 @@ import { logger } from './logger';
 
 export function requestLogger(req: Request, res: Response, next: NextFunction) {
   const start = Date.now();
-  logger.info('enter request');
   res.on('finish', () => {
     const duration = Date.now() - start;
     const message = `${req.method} ${req.originalUrl} ${res.statusCode} - ${duration}ms`;

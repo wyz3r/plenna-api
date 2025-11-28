@@ -1,10 +1,16 @@
 import { NextFunction, Request, Response } from 'express';
-import { Patient } from '../../models/patient.model';
 import { logger } from '../../utils/logger';
 import { GetPatientByIdDTOType } from '../../dtos/get-patient-by-id.dto';
 import { CreatePatientDTOType } from '../../dtos/create-patient.dto';
-import { Consultation } from '../../models/consultation.model';
 import { NotFoundError } from '../../utils/errors/errors';
+import {
+  createPatientService,
+  deletePatienByIdService,
+  getPatientByidServices,
+  getPatientHistoryService,
+  getPatientServices,
+  updatedPatientbyIdService,
+} from './patien.service';
 
 export const createPatient = async (
   req: Request<object, object, CreatePatientDTOType>,
@@ -12,17 +18,16 @@ export const createPatient = async (
   next: NextFunction
 ) => {
   try {
-    const patient = await Patient.create(req.body);
+    const patient = await createPatientService(req.body);
     res.status(201).json(patient);
   } catch (error) {
-    logger.error('createPatient ', error);
     next(error);
   }
 };
 
 export const getPatients = async (_: Request, res: Response, next: NextFunction) => {
   try {
-    const patients = await Patient.find();
+    const patients = await getPatientServices();
     res.json(patients);
   } catch (error) {
     logger.error('getPatients', error);
@@ -37,7 +42,7 @@ export const getPatientById = async (
 ) => {
   try {
     const id = req.params.id;
-    const patient = await Patient.findById(id);
+    const patient = await getPatientByidServices(id);
     if (!patient) {
       throw new NotFoundError('Patient Not Found');
     }
@@ -52,22 +57,12 @@ export const getPatientHistory = async (req: Request, res: Response, next: NextF
   try {
     logger.info('getPatientHistory start');
     const id = req.params.id;
-    const patient = await Patient.findById(id).lean();
-
-    if (!patient) {
-      throw new NotFoundError('Patient Not Found');
-    }
-
-    const history = await Consultation.find(
-      {
-        patientId: req.params.id,
-      },
-      'vitals date diagnosis treatment reason doctor'
-    ).sort({ date: -1 });
+    const patient = await getPatientByidServices(id);
+    const history = await getPatientHistoryService(id);
 
     const response = {
-      name: patient.name,
-      lastname: patient.lastName,
+      name: patient?.name,
+      lastname: patient?.lastName,
       history,
     };
 
@@ -81,13 +76,9 @@ export const getPatientHistory = async (req: Request, res: Response, next: NextF
 export async function deletedPatientById(req: Request, res: Response, next: NextFunction) {
   try {
     const id = req.params.id;
-    const patientupdate = await Patient.findByIdAndUpdate(id, { isDeleted: true });
-    if (!patientupdate) {
-      throw new NotFoundError('Patient Not Found');
-    }
+    await deletePatienByIdService(id);
     res.status(200).json({
       message: 'patient deleted',
-      data: patientupdate,
     });
   } catch (error) {
     logger.error('deletedPatientById');
@@ -98,15 +89,9 @@ export async function deletedPatientById(req: Request, res: Response, next: Next
 export const updatePatient = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { id } = req.params;
+    const { body } = req;
 
-    const updatedPatient = await Patient.findByIdAndUpdate(
-      id,
-      { $set: req.body },
-      {
-        new: true,
-        runValidators: true,
-      }
-    );
+    const updatedPatient = await updatedPatientbyIdService(id, body);
 
     if (!updatedPatient) {
       throw new NotFoundError('Patient not found');

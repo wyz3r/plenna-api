@@ -13,3 +13,10 @@ export class NotFoundError extends AppError {
     super(message, 404, true);
   }
 }
+
+// Error 500 - Base de datos u otros problemas graves
+export class DatabaseError extends AppError {
+  constructor(message = 'Database error') {
+    super(message, 500, true);
+  }
+}
