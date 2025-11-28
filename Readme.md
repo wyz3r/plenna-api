@@ -47,7 +47,7 @@ docker compose up
 npm install
 ```
 
-2. Crear archivo .env (por fines practicos es el mismo que el)
+2. Crear archivo .env (por fines practicos es el mismo que el env.example)
 ```bash
 PORT=3000
 MONGO_URI=localhost:27017
@@ -196,5 +196,44 @@ Errores manejados:
 | `AppError`         | variable | Error controlado      |
 | Rutas inexistentes | 404      | `notFoundHandler`     |
 
+
+# Diagrama visual ASCII
+```yaml
++-----------------------+
+|       PATIENT         |
++-----------------------+
+| _id: ObjectId         |
+| name: string          |
+| lastName: string      |
+| age: number           |
+| gender: string        |
+| phone?: string        |
+| email?: string        |
+| medicalProfile: {     |
+|   bloodType?: string  |
+|   allergies?: [str]   |
+|   chronicDiseases?:[] |
+| }                     |
+| isDeleted: boolean    |
+| createdAt: Date       |
+| updatedAt: Date       |
++----------+------------+
+           |
+          (1)
+           |
+          (N)
++-----------------------+
+|    CONSULTATION       |
++-----------------------+
+| _id: ObjectId         |
+| patientId: ObjectId   |
+| reason: string        |
+| date: Date            |
+| symptoms?: string     |
+| diagnosis?: string    |
+| createdAt: Date       |
+| updatedAt: Date       |
++-----------------------+
+```
 
 
